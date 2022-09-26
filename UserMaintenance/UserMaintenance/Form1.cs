@@ -22,6 +22,7 @@ namespace UserMaintenance
             labelLastName.Text = Resource1.FullName;
             buttonAdd.Text = Resource1.Add;
             buttonfajl.Text = Resource1.WriteInFile;
+            buttondelete.Text = Resource1.Delete;
             listBox1.DataSource = users;
             listBox1.ValueMember = "ID";
             listBox1.DisplayMember = "FullName";
@@ -54,6 +55,17 @@ namespace UserMaintenance
                         sw.WriteLine(users[i].ID+";"+users[i].FullName);
                     }
                 }
+            }
+        }
+
+        private void buttondelete_Click(object sender, EventArgs e)
+        {
+            var lekerdez = (from u in users
+                            where u.FullName == textBoxLastName.Text
+                            select u);
+            if (lekerdez != null)
+            {
+                users.Remove(lekerdez.FirstOrDefault());
             }
         }
     }
