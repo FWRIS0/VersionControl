@@ -32,12 +32,14 @@ namespace UserMaintenance
             this.labelLastName = new System.Windows.Forms.Label();
             this.textBoxLastName = new System.Windows.Forms.TextBox();
             this.buttonAdd = new System.Windows.Forms.Button();
+            this.buttonfajl = new System.Windows.Forms.Button();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.SuspendLayout();
             // 
             // labelLastName
             // 
             this.labelLastName.AutoSize = true;
-            this.labelLastName.Location = new System.Drawing.Point(9, 10);
+            this.labelLastName.Location = new System.Drawing.Point(224, 15);
             this.labelLastName.Name = "labelLastName";
             this.labelLastName.Size = new System.Drawing.Size(35, 13);
             this.labelLastName.TabIndex = 1;
@@ -45,14 +47,14 @@ namespace UserMaintenance
             // 
             // textBoxLastName
             // 
-            this.textBoxLastName.Location = new System.Drawing.Point(77, 7);
+            this.textBoxLastName.Location = new System.Drawing.Point(292, 12);
             this.textBoxLastName.Name = "textBoxLastName";
             this.textBoxLastName.Size = new System.Drawing.Size(100, 20);
             this.textBoxLastName.TabIndex = 3;
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(12, 36);
+            this.buttonAdd.Location = new System.Drawing.Point(227, 41);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(165, 23);
             this.buttonAdd.TabIndex = 5;
@@ -60,11 +62,31 @@ namespace UserMaintenance
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
+            // buttonfajl
+            // 
+            this.buttonfajl.Location = new System.Drawing.Point(227, 70);
+            this.buttonfajl.Name = "buttonfajl";
+            this.buttonfajl.Size = new System.Drawing.Size(165, 23);
+            this.buttonfajl.TabIndex = 6;
+            this.buttonfajl.Text = "button1";
+            this.buttonfajl.UseVisualStyleBackColor = true;
+            this.buttonfajl.Click += new System.EventHandler(this.buttonfajl_Click);
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(6, 12);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(212, 433);
+            this.listBox1.TabIndex = 7;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.buttonfajl);
             this.Controls.Add(this.buttonAdd);
             this.Controls.Add(this.textBoxLastName);
             this.Controls.Add(this.labelLastName);
@@ -80,6 +102,8 @@ namespace UserMaintenance
         private System.Windows.Forms.Label labelLastName;
         private System.Windows.Forms.TextBox textBoxLastName;
         private System.Windows.Forms.Button buttonAdd;
+        private System.Windows.Forms.Button buttonfajl;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

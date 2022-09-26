@@ -21,6 +21,10 @@ namespace UserMaintenance
             InitializeComponent();
             labelLastName.Text = Resource1.FullName;
             buttonAdd.Text = Resource1.Add;
+            buttonfajl.Text = Resource1.WriteInFile;
+            listBox1.DataSource = users;
+            listBox1.ValueMember = "ID";
+            listBox1.DisplayMember = "FullName";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -35,11 +39,20 @@ namespace UserMaintenance
                 FullName = textBoxLastName.Text
             };
             users.Add(u);
-            using (StreamWriter sw = new StreamWriter("felhasznalok.txt"))
+        }
+
+        private void buttonfajl_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.InitialDirectory = Application.StartupPath;
+            if (sfd.ShowDialog()==DialogResult.OK)
             {
-                for (int i = 0; i < users.Count; i++)
+                using (StreamWriter sw = new StreamWriter(sfd.FileName))
                 {
-                    sw.WriteLine(users[i].FullName);
+                    for (int i = 0; i < users.Count; i++)
+                    {
+                        sw.WriteLine(users[i].ID+";"+users[i].FullName);
+                    }
                 }
             }
         }
