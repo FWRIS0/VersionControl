@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UserMaintenance.Entities;
+using System.IO;
 
 
 namespace UserMaintenance
@@ -18,12 +19,8 @@ namespace UserMaintenance
         public Form1()
         {
             InitializeComponent();
-            labelLastName.Text = Resource1.LastName;
-            labelFirstName.Text = Resource1.FirstName;
+            labelLastName.Text = Resource1.FullName;
             buttonAdd.Text = Resource1.Add;
-            listBox1.DataSource = users;
-            listBox1.ValueMember = "ID";
-            listBox1.DisplayMember = "FullName";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -35,10 +32,16 @@ namespace UserMaintenance
         {
             User u = new User()
             {
-                LastName = textBoxLastName.Text,
-                FirstName = textBoxFirstName.Text
+                FullName = textBoxLastName.Text
             };
             users.Add(u);
+            using (StreamWriter sw = new StreamWriter("felhasznalok.txt"))
+            {
+                for (int i = 0; i < users.Count; i++)
+                {
+                    sw.WriteLine(users[i].FullName);
+                }
+            }
         }
     }
 }
