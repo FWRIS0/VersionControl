@@ -17,10 +17,11 @@ namespace week04
         public Form1()
         {
             InitializeComponent();
+            LoadData();
         }
         public void LoadData()
         {
-
+            flats = context.Flats.ToList();
         }
 
         private void Form1_Load(object sender, EventArgs e)
