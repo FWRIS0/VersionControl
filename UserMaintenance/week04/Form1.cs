@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 using Excel = Microsoft.Office.Interop.Excel;
+using System.Data.Entity;
 
 namespace week04
 {
@@ -19,6 +20,16 @@ namespace week04
         Excel.Application xlApp;
         Excel.Workbook xlWB;
         Excel.Worksheet xlSheet;
+        string[] headers = new string[] {
+                "Kód",
+                "Eladó",
+                "Oldal",
+                "Kerület",
+                "Lift",
+                "Szobák száma",
+                "Alapterület (m2)",
+                "Ár (mFt)",
+                "Négyzetméter ár (mFt/m2)"};
         public Form1()
         {
             InitializeComponent();
@@ -27,6 +38,7 @@ namespace week04
         }
         public void LoadData()
         {
+            context.Flats.Load();
             flats = context.Flats.ToList();
         }
         public void CreateExcel()
@@ -41,7 +53,7 @@ namespace week04
 
                 // Új munkalap
                 xlSheet = xlWB.ActiveSheet;
-                //CreateTable(); // Ennek megírása a következő feladatrészben következik
+                CreateTable();
 
                 // Control átadása a felhasználónak
                 xlApp.Visible = true;
@@ -62,16 +74,7 @@ namespace week04
 
         public void CreateTable()
         {
-            string[] headers = new string[] {
-                "Kód",
-                "Eladó",
-                "Oldal",
-                "Kerület",
-                "Lift",
-                "Szobák száma",
-                "Alapterület (m2)",
-                "Ár (mFt)",
-                "Négyzetméter ár (mFt/m2)"};
+            
             for (int i = 0; i < headers.Length; i++)
             {
                 xlSheet.Cells[1, i + 1] = headers[i];
@@ -101,6 +104,30 @@ namespace week04
             xlSheet.get_Range(
              GetCell(2, 1),
              GetCell(1 + values.GetLength(0), values.GetLength(1))).Value2 = values;
+        }
+
+        public void FormatTable()
+        {
+            Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
+            headerRange.Font.Bold = true;
+            headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+            headerRange.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+            headerRange.EntireColumn.AutoFit();
+            headerRange.RowHeight = 40;
+            headerRange.Interior.Color = Color.LightBlue;
+            headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            Excel.Range tableRange = xlSheet.get_Range(GetCell(2, 1), GetCell(flats.Count + 1, headers.Length));
+            tableRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            Excel.Range firstcolumnRange= xlSheet.get_Range(GetCell(1, 1), GetCell(flats.Count + 2, 1));
+            firstcolumnRange.Font.Bold = true;
+            firstcolumnRange.Interior.Color = Color.LightYellow;
+
+            Excel.Range lastcolumnRange = xlSheet.get_Range(GetCell(1, headers.Length), GetCell(flats.Count + 2, headers.Length));
+            lastcolumnRange.Interior.Color = Color.LightGreen;
+            
+            
         }
 
         private string GetCell(int x, int y)
