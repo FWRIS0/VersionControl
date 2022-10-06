@@ -15,7 +15,7 @@ namespace week04
 {
     public partial class Form1 : Form
     {
-        RealEstateEntities context = new RealEstateEntities();
+        RealEstateEntities1 context = new RealEstateEntities1();
         List<Flat> flats;
         Excel.Application xlApp;
         Excel.Workbook xlWB;
@@ -54,6 +54,7 @@ namespace week04
                 // Új munkalap
                 xlSheet = xlWB.ActiveSheet;
                 CreateTable();
+                FormatTable();
 
                 // Control átadása a felhasználónak
                 xlApp.Visible = true;
