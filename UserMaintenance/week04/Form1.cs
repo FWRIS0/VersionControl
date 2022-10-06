@@ -99,7 +99,7 @@ namespace week04
                 values[sor, 5] = f.NumberOfRooms;
                 values[sor, 6] = f.FloorArea;
                 values[sor, 7] = f.Price;
-                values[sor, 8] = "=" + GetCell(sor + 2,8)+"/"+GetCell(sor+2,7);
+                values[sor, 8] = "=" + GetCell(sor + 2,8)+"/"+GetCell(sor+2,7)+"*1000000";
                 sor++;
             }
             xlSheet.get_Range(
@@ -109,6 +109,19 @@ namespace week04
 
         public void FormatTable()
         {
+            
+
+            Excel.Range tableRange = xlSheet.get_Range(GetCell(2, 1), GetCell(flats.Count + 1, headers.Length));
+            tableRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
+
+            Excel.Range firstcolumnRange= xlSheet.get_Range(GetCell(1, 1), GetCell(flats.Count + 1, 1));
+            firstcolumnRange.Font.Bold = true;
+            firstcolumnRange.Interior.Color = Color.LightYellow;
+
+            Excel.Range lastcolumnRange = xlSheet.get_Range(GetCell(1, headers.Length), GetCell(flats.Count + 1, headers.Length));
+            lastcolumnRange.Interior.Color = Color.LightGreen;
+            lastcolumnRange.NumberFormat = "0 000.00";
+
             Excel.Range headerRange = xlSheet.get_Range(GetCell(1, 1), GetCell(1, headers.Length));
             headerRange.Font.Bold = true;
             headerRange.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
@@ -117,18 +130,6 @@ namespace week04
             headerRange.RowHeight = 40;
             headerRange.Interior.Color = Color.LightBlue;
             headerRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
-
-            Excel.Range tableRange = xlSheet.get_Range(GetCell(2, 1), GetCell(flats.Count + 1, headers.Length));
-            tableRange.BorderAround2(Excel.XlLineStyle.xlContinuous, Excel.XlBorderWeight.xlThick);
-
-            Excel.Range firstcolumnRange= xlSheet.get_Range(GetCell(1, 1), GetCell(flats.Count + 2, 1));
-            firstcolumnRange.Font.Bold = true;
-            firstcolumnRange.Interior.Color = Color.LightYellow;
-
-            Excel.Range lastcolumnRange = xlSheet.get_Range(GetCell(1, headers.Length), GetCell(flats.Count + 2, headers.Length));
-            lastcolumnRange.Interior.Color = Color.LightGreen;
-            
-            
         }
 
         private string GetCell(int x, int y)
