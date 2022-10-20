@@ -9,16 +9,19 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using week05.MnbServiceReference;
 using System.IO;
+using week05.Entities;
 
 namespace week05
 {
     public partial class Form1 : Form
     {
         MNBArfolyamServiceSoapClient mnbService = new MNBArfolyamServiceSoapClient();
+        BindingList<RateData> Rates = new BindingList<RateData>();
         public Form1()
         {
             Arfolyamleker();
             InitializeComponent();
+            dataGridView1.DataSource = Rates;
         }
         public void Arfolyamleker()
         {
