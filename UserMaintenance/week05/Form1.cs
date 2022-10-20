@@ -22,6 +22,7 @@ namespace week05
         XmlDocument xml = new XmlDocument();
         public Form1()
         {
+            InitializeComponent();
             RefreshData();
         }
         public string Arfolyamleker(string CurrencyNames ,string startDate , string endDate)
@@ -76,7 +77,6 @@ namespace week05
         {
             Rates.Clear();
             XMLFeldolg(Arfolyamleker(comboBox1.SelectedItem.ToString(),dateTimePickerstart.Value.ToString(),dateTimePickerend.Value.ToString()));
-            InitializeComponent();
             Diagram();
             dataGridView1.DataSource = Rates;
         }
