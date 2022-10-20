@@ -22,17 +22,14 @@ namespace week05
         XmlDocument xml = new XmlDocument();
         public Form1()
         {
-            XMLFeldolg(Arfolyamleker());
-            InitializeComponent();
-            Diagram();
-            dataGridView1.DataSource = Rates;
+            RefreshData();
         }
-        public string Arfolyamleker()
+        public string Arfolyamleker(string CurrencyNames ,string startDate , string endDate)
         {
             GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody();
-            request.currencyNames = "EUR";
-            request.startDate = "2020-01-01";
-            request.endDate = "2020-06-30";
+            request.currencyNames = CurrencyNames;
+            request.startDate = startDate;
+            request.endDate = endDate;
             var response = mnbService.GetExchangeRates(request);
             string result = response.GetExchangeRatesResult;
             using (StreamWriter sw = new StreamWriter("result.xml"))
@@ -75,10 +72,33 @@ namespace week05
             chartArea.AxisY.MajorGrid.Enabled = false;
             chartArea.AxisY.IsStartedFromZero = false;
         }
+        public void RefreshData()
+        {
+            Rates.Clear();
+            XMLFeldolg(Arfolyamleker(comboBox1.SelectedItem.ToString(),dateTimePickerstart.Value.ToString(),dateTimePickerend.Value.ToString()));
+            InitializeComponent();
+            Diagram();
+            dataGridView1.DataSource = Rates;
+        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dateTimePickerstart_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
+        }
+
+        private void dateTimePickerend_ValueChanged(object sender, EventArgs e)
+        {
+            RefreshData();
         }
     }
 }
