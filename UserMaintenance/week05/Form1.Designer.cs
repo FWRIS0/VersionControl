@@ -29,9 +29,9 @@ namespace week05
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.chartRateData = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dateTimePickerstart = new System.Windows.Forms.DateTimePicker();
@@ -56,16 +56,16 @@ namespace week05
             this.chartRateData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea6.Name = "ChartArea1";
-            this.chartRateData.ChartAreas.Add(chartArea6);
-            legend6.Name = "Legend1";
-            this.chartRateData.Legends.Add(legend6);
+            chartArea1.Name = "ChartArea1";
+            this.chartRateData.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartRateData.Legends.Add(legend1);
             this.chartRateData.Location = new System.Drawing.Point(440, 43);
             this.chartRateData.Name = "chartRateData";
-            series6.ChartArea = "ChartArea1";
-            series6.Legend = "Legend1";
-            series6.Name = "Series1";
-            this.chartRateData.Series.Add(series6);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chartRateData.Series.Add(series1);
             this.chartRateData.Size = new System.Drawing.Size(812, 537);
             this.chartRateData.TabIndex = 1;
             this.chartRateData.Text = "chart1";
@@ -76,6 +76,7 @@ namespace week05
             this.dateTimePickerstart.Name = "dateTimePickerstart";
             this.dateTimePickerstart.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerstart.TabIndex = 2;
+            this.dateTimePickerstart.Value = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
             this.dateTimePickerstart.ValueChanged += new System.EventHandler(this.dateTimePickerstart_ValueChanged);
             // 
             // dateTimePickerend
@@ -84,6 +85,7 @@ namespace week05
             this.dateTimePickerend.Name = "dateTimePickerend";
             this.dateTimePickerend.Size = new System.Drawing.Size(200, 20);
             this.dateTimePickerend.TabIndex = 3;
+            this.dateTimePickerend.Value = new System.DateTime(2020, 6, 30, 0, 0, 0, 0);
             this.dateTimePickerend.ValueChanged += new System.EventHandler(this.dateTimePickerend_ValueChanged);
             // 
             // comboBox1
@@ -91,13 +93,13 @@ namespace week05
             this.comboBox1.DisplayMember = "EUR";
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Items.AddRange(new object[] {
-            "EUR"});
+            "EUR",
+            "USD"});
             this.comboBox1.Location = new System.Drawing.Point(425, 10);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 4;
             this.comboBox1.Text = "EUR";
-            this.comboBox1.ValueMember = "EUR";
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // Form1

@@ -19,10 +19,13 @@ namespace week05
     {
         MNBArfolyamServiceSoapClient mnbService = new MNBArfolyamServiceSoapClient();
         BindingList<RateData> Rates = new BindingList<RateData>();
-        XmlDocument xml = new XmlDocument();
+        XmlDocument xml_arfolyam = new XmlDocument();
+        XmlDocument xml_valutak = new XmlDocument();
+        BindingList<string> Currencies = new BindingList<string>();
         public Form1()
         {
             InitializeComponent();
+            XMLFeldolgValutak(Valutak());
             RefreshData();
         }
         public string Arfolyamleker(string CurrencyNames ,string startDate , string endDate)
@@ -39,12 +42,16 @@ namespace week05
             }
             return result;
         }
-        public void XMLFeldolg(string result)
+        public void XMLFeldolgArfolyam(string result)
         {
-            xml.LoadXml(result);
-            foreach (XmlElement x in xml.DocumentElement)
+            xml_arfolyam.LoadXml(result);
+            foreach (XmlElement x in xml_arfolyam.DocumentElement)
             {
                 var child =  (XmlElement)x.ChildNodes[0];
+                if (child == null)
+                {
+                    continue;
+                }
                 RateData rd = new RateData()
                 {
                     Date = Convert.ToDateTime(x.GetAttribute("date")),
@@ -73,10 +80,33 @@ namespace week05
             chartArea.AxisY.MajorGrid.Enabled = false;
             chartArea.AxisY.IsStartedFromZero = false;
         }
+        public string Valutak()
+        {
+            GetCurrenciesRequestBody request = new GetCurrenciesRequestBody();
+            var response = mnbService.GetCurrencies(request);
+            string result = response.GetCurrenciesResult;
+            using (StreamWriter sw = new StreamWriter("valutak.xml"))
+            {
+                sw.Write(result);
+            }
+            return result;
+        }
+        public void XMLFeldolgValutak(string result)
+        {
+            xml_valutak.LoadXml(result);
+            foreach (XmlElement x in xml_valutak.DocumentElement)
+            {
+                foreach (XmlElement childx in x.ChildNodes)
+                {
+                    Currencies.Add(childx.InnerText);
+                }
+            }
+        }
         public void RefreshData()
         {
             Rates.Clear();
-            XMLFeldolg(Arfolyamleker(comboBox1.SelectedItem.ToString(),dateTimePickerstart.Value.ToString(),dateTimePickerend.Value.ToString()));
+            comboBox1.DataSource = Currencies;
+            XMLFeldolgArfolyam(Arfolyamleker(comboBox1.SelectedItem.ToString(),dateTimePickerstart.Value.ToString(),dateTimePickerend.Value.ToString()));
             Diagram();
             dataGridView1.DataSource = Rates;
         }
