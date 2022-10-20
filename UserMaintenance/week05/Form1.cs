@@ -11,6 +11,7 @@ using week05.MnbServiceReference;
 using System.IO;
 using week05.Entities;
 using System.Xml;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace week05
 {
@@ -21,11 +22,12 @@ namespace week05
         XmlDocument xml = new XmlDocument();
         public Form1()
         {
-            Arfolyamleker();
+            XMLFeldolg(Arfolyamleker());
             InitializeComponent();
+            Diagram();
             dataGridView1.DataSource = Rates;
         }
-        public void Arfolyamleker()
+        public string Arfolyamleker()
         {
             GetExchangeRatesRequestBody request = new GetExchangeRatesRequestBody();
             request.currencyNames = "EUR";
@@ -33,11 +35,11 @@ namespace week05
             request.endDate = "2020-06-30";
             var response = mnbService.GetExchangeRates(request);
             string result = response.GetExchangeRatesResult;
-            XMLFeldolg(result);
             using (StreamWriter sw = new StreamWriter("result.xml"))
             {
                 sw.Write(result);
             }
+            return result;
         }
         public void XMLFeldolg(string result)
         {
@@ -56,6 +58,22 @@ namespace week05
                 }
                 Rates.Add(rd);
             }
+        }
+        public void Diagram()
+        {
+            chartRateData.DataSource = Rates;
+
+            var series = chartRateData.Series[0];
+            series.ChartType = SeriesChartType.Line;
+            series.XValueMember = "Date";
+            series.YValueMembers = "Value";
+            series.BorderWidth = 2;
+            var legend = chartRateData.Legends[0];
+            legend.Enabled = false;
+            var chartArea = chartRateData.ChartAreas[0];
+            chartArea.AxisX.MajorGrid.Enabled = false;
+            chartArea.AxisY.MajorGrid.Enabled = false;
+            chartArea.AxisY.IsStartedFromZero = false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
