@@ -16,16 +16,21 @@ namespace week06.Abstractions
             Width = 50;
             Height = 50;
             Paint += Toy_Paint;
+            Click += Interaction;
         }
+
+        protected abstract void Interaction(object sender, EventArgs e);
 
         private void Toy_Paint(object sender, PaintEventArgs e)
         {
             DrawImage(e.Graphics);
         }
         protected abstract void DrawImage(Graphics graphics);
+        protected abstract void SpecialMove();
         public virtual void MoveToy()
         {
             Left += 1;
+            SpecialMove();
         }
     }
 }

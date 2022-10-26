@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using week06.Abstractions;
 
 namespace week06.Entities
@@ -22,6 +23,15 @@ namespace week06.Entities
             graphics.FillRectangle(Box, 0, 0, Width, Height);
             graphics.FillRectangle(Ribbon, 2*Width / 5, 0, Width/5, Height);
             graphics.FillRectangle(Ribbon, 0, 2 * Height / 5, Width, Height/5);
+        }
+        protected override void Interaction(object sender, EventArgs e)
+        {
+            MessageBox.Show("Ajándék");
+        }
+
+        protected override void SpecialMove()
+        {
+            
         }
     }
 }
