@@ -93,11 +93,12 @@ namespace week06
             // 
             // btncolor
             // 
+            this.btncolor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btncolor.Location = new System.Drawing.Point(229, 12);
             this.btncolor.Name = "btncolor";
             this.btncolor.Size = new System.Drawing.Size(105, 42);
             this.btncolor.TabIndex = 4;
-            this.btncolor.UseVisualStyleBackColor = true;
+            this.btncolor.UseVisualStyleBackColor = false;
             this.btncolor.Click += new System.EventHandler(this.btncolor_Click);
             // 
             // Form1

@@ -84,7 +84,8 @@ namespace week06
 
         private void btnball_Click(object sender, EventArgs e)
         {
-            Factory = new BallFactory();
+            Factory = new BallFactory { 
+                      BallColor = btncolor.BackColor};
         }
 
         private void label1_Click(object sender, EventArgs e)
