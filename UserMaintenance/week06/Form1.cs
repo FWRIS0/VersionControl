@@ -84,8 +84,10 @@ namespace week06
 
         private void btnball_Click(object sender, EventArgs e)
         {
-            Factory = new BallFactory { 
-                      BallColor = btncolor.BackColor};
+            Factory = new BallFactory 
+            { 
+                BallColor = btncolor.BackColor
+            };
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -102,7 +104,16 @@ namespace week06
             {
                 return;
             }
-            btncolor.BackColor = color.Color;
+            button.BackColor = color.Color;
+        }
+
+        private void btnpresent_Click(object sender, EventArgs e)
+        {
+            Factory = new PresentFactory
+            {
+                Ribbon = btnpresentribbon.BackColor,
+                Box = btnpresentbox.BackColor
+            };
         }
     }
 }

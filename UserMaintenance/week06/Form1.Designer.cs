@@ -37,6 +37,9 @@ namespace week06
             this.btnball = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.btncolor = new System.Windows.Forms.Button();
+            this.btnpresent = new System.Windows.Forms.Button();
+            this.btnpresentribbon = new System.Windows.Forms.Button();
+            this.btnpresentbox = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainpanel
@@ -44,9 +47,9 @@ namespace week06
             this.mainpanel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainpanel.Location = new System.Drawing.Point(12, 60);
+            this.mainpanel.Location = new System.Drawing.Point(12, 156);
             this.mainpanel.Name = "mainpanel";
-            this.mainpanel.Size = new System.Drawing.Size(776, 378);
+            this.mainpanel.Size = new System.Drawing.Size(776, 282);
             this.mainpanel.TabIndex = 0;
             // 
             // createTimer
@@ -84,7 +87,7 @@ namespace week06
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(340, 27);
+            this.label1.Location = new System.Drawing.Point(335, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 3;
@@ -94,18 +97,51 @@ namespace week06
             // btncolor
             // 
             this.btncolor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btncolor.Location = new System.Drawing.Point(229, 12);
+            this.btncolor.Location = new System.Drawing.Point(123, 60);
             this.btncolor.Name = "btncolor";
-            this.btncolor.Size = new System.Drawing.Size(105, 42);
+            this.btncolor.Size = new System.Drawing.Size(100, 42);
             this.btncolor.TabIndex = 4;
             this.btncolor.UseVisualStyleBackColor = false;
             this.btncolor.Click += new System.EventHandler(this.btncolor_Click);
+            // 
+            // btnpresent
+            // 
+            this.btnpresent.Location = new System.Drawing.Point(229, 12);
+            this.btnpresent.Name = "btnpresent";
+            this.btnpresent.Size = new System.Drawing.Size(100, 42);
+            this.btnpresent.TabIndex = 5;
+            this.btnpresent.Text = "PRESENT";
+            this.btnpresent.UseVisualStyleBackColor = true;
+            this.btnpresent.Click += new System.EventHandler(this.btnpresent_Click);
+            // 
+            // btnpresentribbon
+            // 
+            this.btnpresentribbon.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnpresentribbon.Location = new System.Drawing.Point(229, 60);
+            this.btnpresentribbon.Name = "btnpresentribbon";
+            this.btnpresentribbon.Size = new System.Drawing.Size(100, 42);
+            this.btnpresentribbon.TabIndex = 6;
+            this.btnpresentribbon.UseVisualStyleBackColor = false;
+            this.btnpresentribbon.Click += new System.EventHandler(this.btncolor_Click);
+            // 
+            // btnpresentbox
+            // 
+            this.btnpresentbox.BackColor = System.Drawing.Color.Yellow;
+            this.btnpresentbox.Location = new System.Drawing.Point(229, 108);
+            this.btnpresentbox.Name = "btnpresentbox";
+            this.btnpresentbox.Size = new System.Drawing.Size(100, 42);
+            this.btnpresentbox.TabIndex = 7;
+            this.btnpresentbox.UseVisualStyleBackColor = false;
+            this.btnpresentbox.Click += new System.EventHandler(this.btncolor_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnpresentbox);
+            this.Controls.Add(this.btnpresentribbon);
+            this.Controls.Add(this.btnpresent);
             this.Controls.Add(this.btncolor);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnball);
@@ -128,6 +164,9 @@ namespace week06
         private System.Windows.Forms.Button btnball;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btncolor;
+        private System.Windows.Forms.Button btnpresent;
+        private System.Windows.Forms.Button btnpresentribbon;
+        private System.Windows.Forms.Button btnpresentbox;
     }
 }
 
