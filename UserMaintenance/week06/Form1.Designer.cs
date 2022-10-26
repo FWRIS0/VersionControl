@@ -36,6 +36,7 @@ namespace week06
             this.btncar = new System.Windows.Forms.Button();
             this.btnball = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btncolor = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // mainpanel
@@ -83,18 +84,28 @@ namespace week06
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(229, 27);
+            this.label1.Location = new System.Drawing.Point(340, 27);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Coming next:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // btncolor
+            // 
+            this.btncolor.Location = new System.Drawing.Point(229, 12);
+            this.btncolor.Name = "btncolor";
+            this.btncolor.Size = new System.Drawing.Size(105, 42);
+            this.btncolor.TabIndex = 4;
+            this.btncolor.UseVisualStyleBackColor = true;
+            this.btncolor.Click += new System.EventHandler(this.btncolor_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btncolor);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnball);
             this.Controls.Add(this.btncar);
@@ -115,6 +126,7 @@ namespace week06
         private System.Windows.Forms.Button btncar;
         private System.Windows.Forms.Button btnball;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btncolor;
     }
 }
 

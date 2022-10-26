@@ -91,5 +91,17 @@ namespace week06
         {
 
         }
+
+        private void btncolor_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            ColorDialog color = new ColorDialog();
+            color.Color = button.BackColor;
+            if (color.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+            btncolor.BackColor = color.Color;
+        }
     }
 }
