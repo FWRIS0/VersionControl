@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using week07.Entities;
+using System.IO;
 
 namespace week07
 {
@@ -16,13 +17,14 @@ namespace week07
         List<Tick> ticks;
         PortfolioEntities context = new PortfolioEntities();
         List<PortfolioItem> portfolioItems = new List<PortfolioItem>();
+        List<decimal> Nyereségek = new List<decimal>();
         public Form1()
         {
             InitializeComponent();
             ticks = context.Ticks.ToList();
             dataGridView1.DataSource = ticks;
             CreatePortfolio();
-            List<decimal> Nyereségek = new List<decimal>();
+  
             int intervalum = 30;
             DateTime kezdőDátum = (from x in ticks select x.TradingDay).Min();
             DateTime záróDátum = new DateTime(2016, 12, 30);
@@ -66,6 +68,23 @@ namespace week07
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonsave_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.InitialDirectory = Application.StartupPath;
+            if (sfd.ShowDialog() == DialogResult.OK)
+            {
+                using (StreamWriter sw = new StreamWriter(sfd.FileName))
+                {
+                    sw.WriteLine("Időszak;Nyereség");
+                    for (int i = 0; i < Nyereségek.Count; i++)
+                    {
+                        sw.WriteLine(i + ";" + Nyereségek[i]);
+                    }
+                }
+            }
         }
     }
 }
