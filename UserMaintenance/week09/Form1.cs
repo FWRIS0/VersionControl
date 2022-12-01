@@ -18,29 +18,14 @@ namespace week09
         List<Person> Population = new List<Person>();
         List<BirthProbability> BirthProbabilities = new List<BirthProbability>();
         List<DeathProbability> DeathProbabilities = new List<DeathProbability>();
+        List<int> NumberOfMales = new List<int>();
+        List<int> NumberOfFemales = new List<int>();
         public Form1()
         {
             InitializeComponent();
 
-            Population = PersonRead(@"C:\Temp\nép-teszt.csv");
-            BirthProbabilities = BirthProbabilityRead(@"C:\Temp\születés.csv");
-            DeathProbabilities = DeathProbabilityRead(@"C:\Temp\halál.csv");
-
-            for (int year = 2005; year <= 2024; year++)
-            {
-                for (int i = 0; i < Population.Count; i++)
-                {
-                    SimStep(year, Population[i]);
-                }
-                int nbrOfMales = (from x in Population
-                                  where x.Gender == Gender.Male && x.IsAlive
-                                  select x).Count();
-                int nbrOfFemales = (from x in Population
-                                    where x.Gender == Gender.Female && x.IsAlive
-                                    select x).Count();
-                Console.WriteLine(
-                    string.Format("Év:{0} Fiúk:{1} Lányok:{2}", year, nbrOfMales, nbrOfFemales));
-            }
+            Zaroev.Minimum = 2005;
+            Zaroev.Maximum = 2030;
         }
 
         public void SimStep(int Year, Person person)
@@ -69,6 +54,42 @@ namespace week09
                     Gender = (Gender)Enum.Parse(typeof(Gender), rng.Next(1, 3).ToString()),
                     NumberOFChildren = 0
                 });
+            }
+        }
+
+        public void Simulation()
+        {
+            Population = PersonRead(fajltb.Text);
+            BirthProbabilities = BirthProbabilityRead(@"C:\Temp\születés.csv");
+            DeathProbabilities = DeathProbabilityRead(@"C:\Temp\halál.csv");
+
+            richTextBox1.Clear();
+            int starting_year = 2005;
+            for (int year = starting_year; year <= Zaroev.Value; year++)
+            {
+                for (int i = 0; i < Population.Count; i++)
+                {
+                    SimStep(year, Population[i]);
+                }
+                int nbrOfMales = (from x in Population
+                                  where x.Gender == Gender.Male && x.IsAlive
+                                  select x).Count();
+                int nbrOfFemales = (from x in Population
+                                    where x.Gender == Gender.Female && x.IsAlive
+                                    select x).Count();
+                NumberOfMales.Add(nbrOfMales);
+                NumberOfFemales.Add(nbrOfFemales);
+            }
+            DisplayResults(starting_year);
+        }
+
+        public void DisplayResults(int year)
+        {
+            for (int i = 0; i < NumberOfFemales.Count; i++)
+            {
+                richTextBox1.Text += "Szimulációs év: " + (year + i) +"\n";
+                richTextBox1.Text += "\tFiúk: " + NumberOfMales[i] + "\n";
+                richTextBox1.Text += "\tLányok: " + NumberOfFemales[i] + "\n\n";
             }
         }
 
@@ -130,6 +151,20 @@ namespace week09
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void browsebtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                fajltb.Text = ofd.FileName;
+            }
+        }
+
+        private void startbtn_Click(object sender, EventArgs e)
+        {
+            Simulation();
         }
     }
 }
