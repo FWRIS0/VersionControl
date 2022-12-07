@@ -68,6 +68,7 @@ namespace week10
             var winners = from p in topPerformers
                           where p.IsWinner
                           select p;
+            
             if (winners.Count() > 0)
             {
                 winnerBrain = winners.FirstOrDefault().Brain.Clone();
@@ -81,6 +82,18 @@ namespace week10
         private void Form1_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (winnerBrain != null)
+            {
+                gc.ResetCurrentLevel();
+                gc.AddPlayer(winnerBrain.Clone());
+                gc.AddPlayer();
+                ga.Focus();
+                gc.Start(true);
+            }
         }
     }
 }
